@@ -1,1 +1,19 @@
-
+{
+  "schemaVersion": 1,
+  "id": "hydrowater",
+  "version": "${version}",
+  "name": "HydroWater",
+  "description": "Automatyczne zbieranie wody wiadrem w zadanym promieniu, z lista znajomych i ustawieniem rotacji.",
+  "authors": ["HydroWater"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["pl.hydrowater.HydroWaterClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.4",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
