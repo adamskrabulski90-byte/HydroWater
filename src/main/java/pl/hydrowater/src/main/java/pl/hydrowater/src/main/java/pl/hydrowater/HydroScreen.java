@@ -178,7 +178,7 @@ public class HydroScreen extends Screen {
         }
 
         @Override
-        protected void renderWidget(DrawContext ctx, int mx, int my, float delta) {
+        public void renderWidget(DrawContext ctx, int mx, int my, float delta) {
             int x = getX(), y = getY(), w = getWidth(), h = getHeight();
             ctx.fill(x, y, x + w, y + h, isHovered() ? 0xFF26364D : 0xFF1B2638);
             ctx.fill(x, y + h - 1, x + w, y + h, ACCENT);
@@ -199,33 +199,3 @@ public class HydroScreen extends Screen {
             this.min = min;
             this.max = max;
             this.setter = setter;
-            updateMessage();
-        }
-
-        private int current() {
-            return min + (int) Math.round(value * (max - min));
-        }
-
-        @Override
-        protected void updateMessage() {
-            setMessage(Text.literal(label + ": " + current() + suffix));
-        }
-
-        @Override
-        protected void applyValue() {
-            int v = current();
-            value = (v - min) / (double) (max - min);
-            setter.accept(v);
-        }
-
-        @Override
-        protected void renderWidget(DrawContext ctx, int mx, int my, float delta) {
-            int x = getX(), y = getY(), w = getWidth(), h = getHeight();
-            ctx.fill(x, y, x + w, y + h, 0xFF1B2638);
-            ctx.fill(x, y, x + (int) (value * w), y + h, isHovered() ? 0xFF2E7BD6 : 0xFF2565B0);
-            ctx.fill(x, y + h - 1, x + w, y + h, ACCENT);
-            ctx.drawCenteredTextWithShadow(MinecraftClient.getInstance().textRenderer, getMessage(),
-                    x + w / 2, y + (h - 8) / 2, 0xFFFFFFFF);
-        }
-    }
-}
